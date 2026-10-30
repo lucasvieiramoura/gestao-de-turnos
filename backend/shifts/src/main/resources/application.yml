@@ -3,7 +3,7 @@ spring:
         name: shifts
 
     datasource:
-        url: jdbc:postgresql://localhost:5432/shifts
+        url: jdbc:postgresql://localhost:5433/shifts
         username: shifts_user
         password: shifts_pass
 

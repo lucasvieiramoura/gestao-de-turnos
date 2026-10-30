@@ -4,11 +4,11 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Java-17%2B-orange?style=for-the-badge&logo=openjdk" alt="Java" />
   <img src="https://img.shields.io/badge/Spring_Boot-3.x-green?style=for-the-badge&logo=springboot" alt="Spring Boot" />
-  <img src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white" alt=Docker>
-  <img src="https://img.shields.io/badge/Keycloack-IAM-blue?style=for-the-badge&logo=keycloak&color=%234D4D4Dalt="Keycloak">
+  <img src="https://img.shields.io/badge/Docker-Container-blue?style=for-the-badge&logo=docker&logoColor=white" alt=Docker>
+  <img src="https://img.shields.io/badge/Keycloack-IAM-33C6E9?style=for-the-badge&logo=keycloak&color=%ACACAC" alt="Keycloak">
   <img src="https://img.shields.io/badge/Flayway-DB_Migration-red?style=for-the-badge&logo=flyway&color=%23CC0200" alt="Flayway">
   <img src="https://img.shields.io/badge/PostgreSQL-Database-blue?style=for-the-badge&logo=postgresql" alt="PostgreSQL" />
-  <img src="https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white" alt="Hibernate">
+  <img src="https://img.shields.io/badge/Hibernate-ORM-CDC29A?style=for-the-badge&logo=Hibernate&logoColor=white" alt="Hibernate">
   <img src="https://img.shields.io/badge/Status-Em_Desenvolviemento-blue?style=for-the-badge" alt="Em Desenvolvimetno" />
 </p>
 
