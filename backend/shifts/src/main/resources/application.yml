@@ -1,0 +1,30 @@
+spring:
+    application:
+        name: shifts
+
+    datasource:
+        url: jdbc:postgresql://localhost:5432/shifts
+        username: shifts_user
+        password: shifts_pass
+
+    jpa:
+        hibernate:
+            ddl-auto: validate # Hibernate só valida, quem cria é o Flyway
+        open-in-view: false     #boa prática: evita consultas "escondidas" na camada web
+        properties:
+            hibernate:
+                jdbc:
+                    timezone: UTC   # guardamos tudo em UTC
+    
+    flyway:
+        enabled: true
+        locations: classpath:db/migration
+    
+server:
+    port: 8080
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: health, info
