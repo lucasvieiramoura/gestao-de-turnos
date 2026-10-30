@@ -10,7 +10,7 @@ spring:
     jpa:
         hibernate:
             ddl-auto: validate # Hibernate só valida, quem cria é o Flyway
-        open-in-view: false     #boa prática: evita consultas "escondidas" na camada web
+        open-in-view: true     #boa prática: evita consultas "escondidas" na camada web
         properties:
             hibernate:
                 jdbc:

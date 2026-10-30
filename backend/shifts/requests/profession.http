@@ -1,0 +1,58 @@
+@baseUrl = http://localhost:8080/api/professions
+
+### 1.Listar todas profissionais
+GET {{baseUrl}}
+
+### 2. Buscar por id
+GET {{baseUrl}}/4
+
+### 3. Criar profissional Técnico de Enfermagem com turno 1
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "name": "Técnico de Enfermagem",
+    "defaultShiftTemplateId": 1
+}
+
+### 4. Criar profissional "Médico Pediatra" com turno não existente 999
+##### Erro esperardo (422) : Não existente
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "name": "Médico Pediatra",
+    "defaultShiftTemplateId": 999
+}
+
+### 5. Criar profissionais "Terapeuta Ocupacional" com turno Inativo 4
+##### Erro esperado (422) : Está Inativo
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "name": "Médico Pediatra",
+    "defaultShiftTemplateId": 4
+}
+
+### 6 . Criar profissional com nome Vazio
+##### Erro esperado (400)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "name":"",
+    "defaultShiftTemplateId": 1
+}
+
+### 7. Atualizar
+PUT {{baseUrl}}/4
+Content-Type: application/json
+
+{
+    "name": "Técnico de Enfermagem",
+    "defaultShiftTemplateId": 2
+}
+
+### 8. Inativar
+DELETE {{baseUrl}}/4
