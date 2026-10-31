@@ -4,7 +4,7 @@
 GET {{baseUrl}}
 
 ### 2. Buscar por id
-GET {{baseUrl}}/4
+GET {{baseUrl}}/2
 
 ### 3. Criar profissional Técnico de Enfermagem com turno 1
 POST {{baseUrl}}
@@ -46,11 +46,11 @@ Content-Type: application/json
 }
 
 ### 7. Atualizar
-PUT {{baseUrl}}/4
+PUT {{baseUrl}}/2
 Content-Type: application/json
 
 {
-    "name": "Técnico de Enfermagem",
+    "name": "Enfermeiro",
     "defaultShiftTemplateId": 2
 }
 

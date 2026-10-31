@@ -43,6 +43,9 @@ public class ProfessionService {
     @Transactional 
     public ProfessionResponse create(ProfessionRequest request) {
         ShiftTemplate template = getActiveShiftTemplate(request.defaultShiftTemplateId());
+        if(repository.existsByNameIgnoreCase(request.name())){
+            throw  duplicateName(request.name());
+        }
         Profession profession = new Profession(request.name(), template);
         return ProfessionResponse.from(repository.save(profession));
     }
@@ -50,6 +53,9 @@ public class ProfessionService {
     @Transactional 
     public ProfessionResponse update(Long id, ProfessionRequest request) {
         Profession profession = getOrThrow(id);
+        if(repository.existsByNameIgnoreCaseAndIdNot(request.name(), id)) {
+            throw duplicateName(request.name());
+        }
         profession.setName(request.name());
         profession.setDefaultShiftTemplate(getActiveShiftTemplate(request.defaultShiftTemplateId()));
         return ProfessionResponse.from(profession); // dirty checking: sem save()
@@ -63,6 +69,10 @@ public class ProfessionService {
     private Profession getOrThrow(Long id) {
         return repository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Profisional "+id+" não encontrado"));
+    }
+    
+    private BusinessRuleException duplicateName(String name) {
+        return new BusinessRuleException("Já existe uma profissão com o nome "+name+"");
     }
 
     private  ShiftTemplate getActiveShiftTemplate( Long shiftTemplateId ) {

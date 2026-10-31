@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX uq_profession_name_ci ON profession(lower(name));
