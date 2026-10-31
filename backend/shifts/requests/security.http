@@ -1,0 +1,49 @@
+@keycloak = http://localhost:8180/realms/shifts/protocol/openid-connect/token
+@api = http://localhost:8080/api
+
+### Login com ADMIN
+# @name loginAdmin
+POST {{keycloak}}
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password&client_id=shift-dev&username=admin.teste&password=Teste@123
+
+### Login com PROFISSIONAL
+# @name loginMedico
+POST {{keycloak}}
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password&client_id=shift-dev&username=medico.teste&password=Teste@123
+
+### 1. Sem token (esperado: 401)
+GET {{api}}/shift-templates
+
+### 2. Quem sou eu (ADMIN)
+GET {{api}}/me
+Authorization: Bearer {{loginAdmin.response.body.access_token}}
+
+### 3. Profissional consulta turnos (esperado: 200)
+GET {{api}}/shift-templates
+Authorization: Bearer {{loginMedico.response.body.access_token}}
+
+### 4. Profissional tenta criar turno (esperado: 403)
+POST {{api}}/shift-templates
+Authorization: Bearer {{loginMedico.response.body.access_token}}
+Content-Type: application/json
+
+{ 
+    "name":"Teste",
+    "startTime": "08:00",
+    "endTime": "12:00"
+}
+
+### 5. ADMIN cria turno (esperado: 201)
+POST {{api}}/shift-templates
+Authorization: Bearer {{loginAdmin.response.body.access_token}}
+Content-Type: application/json
+
+{
+    "name": "Manhã 4h",
+    "startTime": "08:00",
+    "endTime": "12:00"
+}

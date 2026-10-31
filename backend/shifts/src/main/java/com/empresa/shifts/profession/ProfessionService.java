@@ -12,9 +12,6 @@ import com.empresa.shifts.shared.exception.BusinessRuleException;
 import com.empresa.shifts.shared.exception.ResourceNotFoundException;
 import com.empresa.shifts.shift.ShiftTemplate;
 import com.empresa.shifts.shift.ShiftTemplateRepository;
-import com.empresa.shifts.shift.ShiftTemplateService;
-
-
 @Service 
 public class ProfessionService {
     
