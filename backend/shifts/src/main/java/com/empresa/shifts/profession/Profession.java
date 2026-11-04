@@ -1,16 +1,14 @@
 package com.empresa.shifts.profession;
 
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
-
 import com.empresa.shifts.shared.RecordStatus;
+import com.empresa.shifts.shared.audit.AuditableEntity;
 import com.empresa.shifts.shift.ShiftTemplate;
 
 import jakarta.persistence.*;
 
 @Entity 
 @Table (name ="profession")
-public class Profession {
+public class Profession extends AuditableEntity{
 
     @Id 
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -27,18 +25,6 @@ public class Profession {
     @Column (nullable = false, length = 10)
     private RecordStatus status = RecordStatus.ACTIVE;
 
-    @Column (name = "created_by")
-    private Long createdBy;
-
-    @Column (name = "created_at", nullable = false, updatable = false)
-    private OffsetDateTime createdAt;
-
-    @Column (name = "updated_by")
-    private Long updatedBy; 
-
-    @Column (name = "updated_at")
-    private OffsetDateTime updatedAt;
-
     protected Profession() {
 
     }
@@ -47,17 +33,6 @@ public class Profession {
         this.name = name;
         this.defaultShiftTemplate = defaultShiftTemplate;
     }
-
-    @PrePersist 
-    void onCreate() {
-        this.createdAt = OffsetDateTime.now(ZoneOffset.UTC);
-    }
-
-    @PreUpdate 
-    void onUpdate() {
-        this.updatedAt = OffsetDateTime.now(ZoneOffset.UTC);
-    }
-
 
     public Long getId() {
         return id;
@@ -73,22 +48,6 @@ public class Profession {
 
     public RecordStatus getStatus() {
         return status;
-    }
-
-    public Long getCreatedBy() {
-        return createdBy;
-    }
-
-    public OffsetDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public Long getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public OffsetDateTime getUpdatedAt() {
-        return updatedAt;
     }
 
     public void setName(String name) {

@@ -1,6 +1,8 @@
 package com.empresa.shifts.shift;
 
 import com.empresa.shifts.shared.RecordStatus;
+import com.empresa.shifts.shared.audit.AuditableEntity;
+
 import jakarta.persistence.*;
 
 import java.time.LocalTime;
@@ -9,7 +11,7 @@ import java.time.ZoneOffset;
 
 @Entity 
 @Table (name = "shift_template")
-public class ShiftTemplate {
+public class ShiftTemplate extends AuditableEntity {
     
     @Id 
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -34,11 +36,6 @@ public class ShiftTemplate {
     @Column (nullable = false, length = 10)
     private RecordStatus status = RecordStatus.ACTIVE;
 
-    @Column (name = "created_at", nullable = false, updatable = false)
-    private OffsetDateTime createdAt;
-
-    @Column (name = "updated_at")
-    private OffsetDateTime updatedAt;
 
     protected ShiftTemplate () {
         // exigido pelo JPA; protected para ninguém criar objeto "vazio" por engano
@@ -46,16 +43,6 @@ public class ShiftTemplate {
 
     public ShiftTemplate (String name){
         this.name = name;
-    }
-
-    @PrePersist
-    void onCreate() {
-        this.createdAt = OffsetDateTime.now(ZoneOffset.UTC);
-    }
-
-    @PreUpdate
-    void onUpdate() {
-        this.updatedAt = OffsetDateTime.now(ZoneOffset.UTC);
     }
 
     public String getName() {
@@ -108,14 +95,6 @@ public class ShiftTemplate {
 
     public Long getId() {
         return id;
-    }
-
-    public OffsetDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public OffsetDateTime getUpdatedAt() {
-        return updatedAt;
     }
 
 }
