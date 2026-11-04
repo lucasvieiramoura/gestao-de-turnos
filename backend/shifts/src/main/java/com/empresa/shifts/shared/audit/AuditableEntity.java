@@ -1,5 +1,6 @@
 package com.empresa.shifts.shared.audit;
 
+import java.time.Instant;
 import java.time.OffsetDateTime;
 
 import org.springframework.data.annotation.CreatedBy;
@@ -18,7 +19,7 @@ public abstract class AuditableEntity {
 
     @CreatedDate 
     @Column (name ="created_at", nullable = false, updatable = false)
-    private OffsetDateTime createdAt;
+    private Instant createdAt;
 
     @CreatedBy 
     @Column (name = "created_by", updatable = false)
@@ -26,15 +27,15 @@ public abstract class AuditableEntity {
 
     @LastModifiedDate 
     @Column (name = "updated_at")
-    private OffsetDateTime updatedAt;
+    private Instant updatedAt;
 
     @LastModifiedBy 
     @Column (name = "updated_by")
     private Long updatedBy;
 
-    public OffsetDateTime getCreatedAt() {return createdAt; }
+    public Instant getCreatedAt() {return createdAt; }
     public Long getCreatedBy() { return createdBy; }
-    public OffsetDateTime getUpdateAt() { return updatedAt; }
+    public Instant getUpdateAt() { return updatedAt; }
     public Long getUpdateBy() { return updatedBy; }
 
 }

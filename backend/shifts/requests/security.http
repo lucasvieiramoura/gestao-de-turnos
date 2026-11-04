@@ -24,7 +24,7 @@ Authorization: Bearer {{loginAdmin.response.body.access_token}}
 
 ### 3. Profissional consulta turnos (esperado: 200)
 GET {{api}}/shift-templates
-Authorization: Bearer {{loginMedico.response.body.access_token}}
+Authorization: Bearer {{loginAdmin.response.body.access_token}}
 
 ### 4. Profissional tenta criar turno (esperado: 403)
 POST {{api}}/shift-templates
@@ -43,7 +43,22 @@ Authorization: Bearer {{loginAdmin.response.body.access_token}}
 Content-Type: application/json
 
 {
-    "name": "Manhã 4h",
-    "startTime": "08:00",
-    "endTime": "12:00"
+    "name": "Manhã 6h",
+    "startTime": "0:00",
+    "endTime": "14:00"
+}
+
+### 6. Get usuário validando cadastro no Keycloak - Quem sou eu users
+GET {{api}}/users/me
+Authorization: Bearer {{loginAdmin.response.body.access_token}}
+
+### 7. Atualizar
+PUT {{api}}/shift-templates/7
+Authorization: Bearer {{loginAdmin.response.body.access_token}}
+Content-Type: application/json
+
+{
+  "name": "Manhã 6h (ajustado)",
+  "startTime": "09:00",
+  "endTime": "15:00"
 }
