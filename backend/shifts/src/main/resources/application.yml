@@ -25,7 +25,15 @@ spring:
             resourceserver:
                 jwt:
                     issuer-uri: http://localhost:8180/realms/shifts
-    
+    config: 
+        import: optional:classpath:application-local.yml
+
+keycloak:
+    base-url: http://localhost:8180
+    realm: shifts
+    admin-client-id: shifts-backend
+    admin-client-secrect: definido-no-application-local ## Definido no application local
+
 server:
     port: 8080
 

@@ -8,4 +8,5 @@ import java.util.UUID;
 
 public interface AppUserRepository  extends JpaRepository<AppUser, Long>{
     Optional<AppUser> findByKeycloakId(UUID keycloakId);
+    boolean existsByEmailIgnoreCase(String email);
 }

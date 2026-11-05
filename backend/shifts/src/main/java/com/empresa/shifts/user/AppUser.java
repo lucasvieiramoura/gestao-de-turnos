@@ -60,6 +60,14 @@ public class AppUser extends  AuditableEntity{
     protected AppUser() {
     }
 
+    public AppUser(UUID keylcoakId, String name, String email, AccessProfile accessProfile, Profession profession) {
+        this.keycloakId = keylcoakId;
+        this.name = name;
+        this.email = email;
+        this.accessProfile = accessProfile;
+        this.profession = profession;
+    } 
+
     public Long getId() {
         return id;
     }
@@ -122,8 +130,19 @@ public class AppUser extends  AuditableEntity{
         return shiftTemplate;
     }
 
+    
+
+    public void setShiftTemplate(ShiftTemplate shiftTemplate) {
+        this.shiftTemplate = shiftTemplate;
+    }
+
     public UserStatus getStatus() {
         return status;
     }
+
+    public void setStatus(UserStatus status) {
+        this.status = status;
+    }
+    
     
 }
